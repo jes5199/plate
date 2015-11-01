@@ -1,0 +1,5 @@
+{:migrators {:sql-mig "db/migrators/sql"}
+ :databases { :psql-dev {:type :sql, :url "jdbc:postgresql://localhost/plate_dev"}
+              :psql-prod {:type :sql, :url #envf ["jdbc:%s" DATABASE_URL]} }
+ :environments { :dev [{:db :psql-dev, :migrator :sql-mig, :seed :sql-seed}]
+                 :prod [{:db :psql-prod, :migrator :sql-mig, :seed :sql-seed}] }}
